@@ -9,7 +9,7 @@
 
 
 ## Resources
-- [Logic Level Converters - Learn & Example Project - TXS0108E]([https://www.example.com](https://www.youtube.com/watch?v=f7aySy_0URE))
+[Logic Level Converters - Learn & Example Project - TXS0108E]([https://www.example.com](https://www.youtube.com/watch?v=f7aySy_0URE))
 
 - [Additional ESP32 Serial Channels in Arduino IDE]([https://www.example.com](https://www.youtube.com/watch?v=GwShqW39jlE))
 
