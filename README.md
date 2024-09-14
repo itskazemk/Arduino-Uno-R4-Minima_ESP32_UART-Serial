@@ -9,12 +9,12 @@
 
 
 ## Resources
-- [Logic Level Converters - Learn & Example Project - TXS0108E]([https://www.example.com](https://www.youtube.com/watch?v=f7aySy_0URE)
+- [Logic Level Converters - Learn & Example Project - TXS0108E](https://www.youtube.com/watch?v=f7aySy_0URE)
 
-- [Additional ESP32 Serial Channels in Arduino IDE]([https://www.example.com](https://www.youtube.com/watch?v=GwShqW39jlE)
+- [Additional ESP32 Serial Channels in Arduino IDE](https://www.youtube.com/watch?v=GwShqW39jlE)
 
-- [Uno R4 Minima USB Serial & UART]([https://www.example.com](https://docs.arduino.cc/tutorials/uno-r4-minima/cheat-sheet/#usb-serial--uart)
+- [Uno R4 Minima USB Serial & UART](https://docs.arduino.cc/tutorials/uno-r4-minima/cheat-sheet/#usb-serial--uart)
 
-- [How to use the Serial Port (UART) on ESP32]([https://www.example.com](https://www.luisllamas.es/en/esp32-uart/)
+- [How to use the Serial Port (UART) on ESP32](https://www.luisllamas.es/en/esp32-uart/)
 
 
