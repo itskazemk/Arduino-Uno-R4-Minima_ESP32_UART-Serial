@@ -1,0 +1,6 @@
+{
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#006492" // Change this color!
+  }
+  // "window.title": "Production-API${separator}${activeEditorShort}"
+}
