@@ -2,9 +2,9 @@
 
 
 ![arduino_esp32_uart-serial](https://github.com/user-attachments/assets/c6254a18-e77c-4b20-8ed8-fc93eb1366b2)
-----
+---
 ![arduino_esp32_uart-serial_SIDE1 (1)](https://github.com/user-attachments/assets/166004d4-f905-442c-816e-c5df00d442a6)
-----
+---
 ![arduino_esp32_uart-serial_SIDE2 (1)](https://github.com/user-attachments/assets/5712dc38-5c9a-4f8e-a611-70fbd18fe55a)
 
 
