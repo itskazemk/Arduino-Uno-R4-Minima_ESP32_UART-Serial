@@ -13,7 +13,7 @@ void setup()
 {
   Serial.begin(9600);
 
-  espSerial.begin(19200, SERIAL_8N1, RXD2, TXD2);
+  espSerial.begin(115200, SERIAL_8N1, RXD2, TXD2);
 
   delay(1000);
   Serial.write("ESP32: Loopback program started");
@@ -22,8 +22,12 @@ void loop()
 {
   if (espSerial.available())
   {
-    Serial.write("FROM CUSTOM UART");
-    Serial.write(".");
-    Serial.println(espSerial.readString());
+    String message = espSerial.readString();
+    Serial.print(". ");
+    Serial.println(message);
+    if (message == "1")
+    {
+      Serial.println("ESP32:__SMOKE__");
+    }
   }
 }

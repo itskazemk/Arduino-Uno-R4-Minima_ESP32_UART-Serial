@@ -1,4 +1,9 @@
+// Serial  => usb
+// Serial1 => RX/TX
+
 #include <Arduino.h>
+
+int Threshold = 400;
 
 void setup()
 {
@@ -8,7 +13,7 @@ void setup()
     // waiting for Serial 0 to connect
   }
 
-  Serial1.begin(19200);
+  Serial1.begin(115200);
   while (!Serial)
   {
     // waiting for Serial1 to connect
@@ -20,7 +25,16 @@ void setup()
 
 void loop()
 {
+  int sensorValue = analogRead(A0);
+
+  if (sensorValue > Threshold)
+  {
+    Serial.print(sensorValue);
+    Serial.println(" | SMOKE DETECTED!");
+    Serial1.write("1");
+  }
+
   Serial1.write("--69--");
   Serial.write("--69--");
-  delay(3000);
+  delay(1500);
 }
