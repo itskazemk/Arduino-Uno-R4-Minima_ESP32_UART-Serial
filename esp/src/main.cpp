@@ -14,10 +14,13 @@ const char *password = "F@timaH0meK@zem";
 // HTTP POST URL
 const char *postUrl = "http://192.168.1.102:3000/api/addSensorRecord";
 
+HardwareSerial espSerial(2);
+
 void setup()
 {
   // Initialize Serial communication
   Serial.begin(9600);
+  espSerial.begin(115200, SERIAL_8N1, RXD2, TXD2);
 
   // Connect to Wi-Fi
   WiFi.begin(ssid, password);
@@ -34,30 +37,41 @@ void setup()
 
 void loop()
 {
-  HTTPClient http;
-
-  // Start the HTTP POST request
-  http.begin(postUrl);
-  http.addHeader("Content-Type", "application/json");
-
-  // Create the JSON payload
-  String jsonPayload = "{\"sensorId\":\"sensor1\", \"location\":\"ardakan\", \"amount\":200, \"smoke\":true}";
-
-  // Send the POST request and get the response code
-  int httpResponseCode = http.POST(jsonPayload);
-
-  // Print the HTTP response code
-  if (httpResponseCode > 0)
+  if (espSerial.available())
   {
-    Serial.println("HTTP POST Request Sent, Response Code: " + String(httpResponseCode));
-  }
-  else
-  {
-    Serial.println("Error in sending POST request: " + String(httpResponseCode));
-  }
+    String message = espSerial.readString();
+    Serial.print(". ");
+    Serial.println(message);
 
-  // Close the connection
-  http.end();
+    if (message == "1")
+    {
+      Serial.println("ESP32:__SMOKE__");
 
-  delay(1000);
+      // Create an HTTPClient object
+      HTTPClient http;
+
+      // Start the HTTP POST request
+      http.begin(postUrl);
+      http.addHeader("Content-Type", "application/json");
+
+      // Create the JSON payload
+      String jsonPayload = "{\"sensorId\":\"sensor1\", \"location\":\"ardakan\", \"amount\":200, \"smoke\":true}";
+
+      // Send the POST request and get the response code
+      int httpResponseCode = http.POST(jsonPayload);
+
+      // Print the HTTP response code
+      if (httpResponseCode > 0)
+      {
+        Serial.println("HTTP POST Request Sent, Response Code: " + String(httpResponseCode));
+      }
+      else
+      {
+        Serial.println("Error in sending POST request: " + String(httpResponseCode));
+      }
+
+      // Close the connection
+      http.end();
+    }
+  }
 }
