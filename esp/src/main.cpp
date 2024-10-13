@@ -43,7 +43,7 @@ void loop()
     Serial.print(". ");
     Serial.println(message);
 
-    if (message == "1")
+    if (message)
     {
       Serial.println("ESP32:__SMOKE__");
 

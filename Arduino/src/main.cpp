@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 
-int Threshold = 400;
+int Threshold = 350;
 
 void setup()
 {
@@ -31,10 +31,8 @@ void loop()
   {
     Serial.print(sensorValue);
     Serial.println(" | SMOKE DETECTED!");
-    Serial1.write("1");
+    Serial1.write(sensorValue);
   }
 
-  Serial1.write("--69--");
-  Serial.write("--69--");
   delay(1500);
 }
