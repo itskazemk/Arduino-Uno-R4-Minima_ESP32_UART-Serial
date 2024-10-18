@@ -31,7 +31,7 @@ void loop()
   {
     Serial.print(sensorValue);
     Serial.println(" | SMOKE DETECTED!");
-    Serial1.write(sensorValue);
+    Serial1.print(String(sensorValue));
   }
 
   delay(1500);

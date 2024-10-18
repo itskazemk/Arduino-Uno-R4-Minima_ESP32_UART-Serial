@@ -7,9 +7,8 @@
 #define RXD2 16
 #define TXD2 17
 
-// Replace with your network credentials
-const char *ssid = "Sweet Home";
-const char *password = "F@timaH0meK@zem";
+const char *ssid = "wifi";
+const char *password = "pas12345678";
 
 // HTTP POST URL
 const char *postUrl = "http://192.168.1.102:3000/api/addSensorRecord";
@@ -39,39 +38,36 @@ void loop()
 {
   if (espSerial.available())
   {
-    String message = espSerial.readString();
+    String messageValue = espSerial.readString();
     Serial.print(". ");
-    Serial.println(message);
+    Serial.println(messageValue);
 
-    if (message)
+    Serial.println("ESP32:__SMOKE__");
+
+    // Create an HTTPClient object
+    HTTPClient http;
+
+    // Start the HTTP POST request
+    http.begin(postUrl);
+    http.addHeader("Content-Type", "application/json");
+
+    // Create the JSON payload
+    String jsonPayload = "{\"sensorId\":\"sensor1\", \"location\":\"ardakan\", \"amount\":" + messageValue + ", \"smoke\":true}";
+
+    // Send the POST request and get the response code
+    int httpResponseCode = http.POST(jsonPayload);
+
+    // Print the HTTP response code
+    if (httpResponseCode > 0)
     {
-      Serial.println("ESP32:__SMOKE__");
-
-      // Create an HTTPClient object
-      HTTPClient http;
-
-      // Start the HTTP POST request
-      http.begin(postUrl);
-      http.addHeader("Content-Type", "application/json");
-
-      // Create the JSON payload
-      String jsonPayload = "{\"sensorId\":\"sensor1\", \"location\":\"ardakan\", \"amount\":200, \"smoke\":true}";
-
-      // Send the POST request and get the response code
-      int httpResponseCode = http.POST(jsonPayload);
-
-      // Print the HTTP response code
-      if (httpResponseCode > 0)
-      {
-        Serial.println("HTTP POST Request Sent, Response Code: " + String(httpResponseCode));
-      }
-      else
-      {
-        Serial.println("Error in sending POST request: " + String(httpResponseCode));
-      }
-
-      // Close the connection
-      http.end();
+      Serial.println("HTTP POST Request Sent, Response Code: " + String(httpResponseCode));
     }
+    else
+    {
+      Serial.println("Error in sending POST request: " + String(httpResponseCode));
+    }
+
+    // Close the connection
+    http.end();
   }
 }
